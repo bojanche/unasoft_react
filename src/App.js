@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 // import React, { useState } from 'react';
 import './App.css';
+
 import Person from './Person/Person';
+
 
 class App extends Component {
 state = {
@@ -53,12 +55,16 @@ state = {
 
   render() {
     const style = {
-      backgroundColor: 'gray',
+      backgroundColor: 'green',
       font: 'inherit',
       border: '1px solid blue',
       padding: '8px',
-      cursor: 'pointer'
-
+      cursor: 'pointer',
+      color: 'white',
+      ':hover': {
+        backgroundColor: 'lightgreen',
+        color: 'black'
+      }
     };
 
     let persons = null;
@@ -70,17 +76,32 @@ state = {
         {/* <Person name={this.state.persons[1].name} age="8" changed={this.nameChangedHandler}>My hobbies: Playing</Person>
         <Person name="Bojana" age="4" /> */}
       </div>
-      )
-    };
-    return (
-      <div className="App">
-        <h1>Haj, moja UnaSoft</h1>
-        <p>This is working</p>
-        <button onClick={this.togglePersonsHandler} style={style}>Promjeni ime</button>
-        {/* <Person name={this.state.persons[0].name} age={this.state.persons[0].age} click={this.switchNameHandler.bind(this, 'Janche_bo')} current_name={this.state.persons[0].name} /> */}
-        {persons}        
+      );
+      style.backgroundColor = 'red';
+      style[':hover'] = { backgroundColor: 'salmon',
+      color: 'black'}
+    }
 
-      </div>
+    let klase = [];
+
+    if (this.state.persons.length <= 2) {
+      klase.push('red');
+      console.log(klase);
+    }
+    if (this.state.persons.length <= 1) {
+      klase.push('bold');
+      console.log(klase);
+    }
+    return (
+
+        <div className="App">
+          <h1>Haj, moja UnaSoft</h1>
+          <p className={klase.join(' ')}>This is working</p>
+          <button onClick={this.togglePersonsHandler} style={style}>Promjeni ime</button>
+          {/* <Person name={this.state.persons[0].name} age={this.state.persons[0].age} click={this.switchNameHandler.bind(this, 'Janche_bo')} current_name={this.state.persons[0].name} /> */}
+          {persons}        
+
+        </div>
 
     );
     // return React.createElement('div', {className: 'App'}, React.createElement('h1', null, 'I\'m a react app!!!'));
